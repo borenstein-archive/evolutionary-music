@@ -1,0 +1,36 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class LatticePanel extends JPanel {
+	
+
+	
+	private int h, w, side;
+    public LatticePanel(int width, int height, int side) {
+    	h = height;
+    	w = width;
+    	this.side = side;
+    	
+        setPreferredSize(new Dimension(width * side, height * side));
+    }
+
+    public void render(int x, int y, boolean on) {
+    	int x0 = x * side;
+    	int y0 = (h * side) - (y * side);
+    	
+    	Graphics g = getGraphics();
+    	
+    	if (on) {
+    		g.setColor(Color.BLACK);
+    	} else {
+    		g.setColor(Color.WHITE);
+    	}
+    	
+        g.drawRect(x0, y0-side, x0+side, y0);
+        g.fillRect(x0, y0-side, x0+side, y0);
+    }
+}
